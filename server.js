@@ -1,14 +1,14 @@
 const express = require('express');
+const expressLayouts = require('express-ejs-layouts');
 const app = express();
 const port = process.env.PORT || 3005;
-const expressLayouts = require('express-ejs-layouts');
+
 const session = require('express-session');
+const MemoryStore = require('memorystore')(session);
+
 const { Pool } = require('pg');
-const db = new Pool( {
-    database: 'goodfoodhunting',
-    user: 'postgres',
-    password: process.env.POSTGRES_PW,
-});
+const db = require('./db')
+
 
 
 
@@ -16,6 +16,10 @@ app.set('view engine', 'ejs');
 app.use(expressLayouts);
 app.use(express.static('public'));
 app.use(session({
+    cookie: { maxAge: 86400000 },
+    store: new MemoryStore({
+      checkPeriod: 86400000 // prune expired entries every 24h
+    }),
     secret: process.env.SESSION_SECRET || 'keyboard cat',
     resave: false,
     saveUninitialized: true

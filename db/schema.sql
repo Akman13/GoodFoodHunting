@@ -3,6 +3,7 @@ CREATE DATABASE goodfoodhunting;
 
 CREATE TABLE dishes (
     id SERIAL PRIMARY KEY,
+    user_id INTEGER,
     title VARCHAR(255),
     image_url TEXT
 );
