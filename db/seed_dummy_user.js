@@ -1,6 +1,5 @@
 const { Client } = require('pg'); // Need to save to the database
 
-
 const bcrypt = require('bcrypt');
 
 const db = new Client( {
@@ -10,25 +9,30 @@ const db = new Client( {
 });
 db.connect();
 
-const email = 'dt@ga.co';
-const plainTextPassword = "pudding";
+// const email = 'dt@ga.co';
+// const plainTextPassword = "pudding";
 
-bcrypt.genSalt(10, (err, salt) => {
+function recordNewUser(email, plainPassword) {
 
-    bcrypt.hash(plainTextPassword, salt, (hashErr, digestedPassword) => {
+    bcrypt.genSalt(10, (err, salt) => {
     
-        const sql = `INSERT INTO users (email, password_digest) VALUES ('${email}', '${digestedPassword}')`;
-
-        db.query(sql, (dbErr, dbRes) => {
-            if (dbErr) {
-                console.log(dbErr);
-                process.exit(1);
-
-            } else {
-                console.log('It got added');
-                db.end();
-            }
+        bcrypt.hash(plainPassword, salt, (hashErr, digestedPassword) => {
+        
+            const sql = `INSERT INTO users (email, password_digest) VALUES ('${email}', '${digestedPassword}')`;
+    
+            db.query(sql, (dbErr, dbRes) => {
+                if (dbErr) {
+                    console.log(dbErr);
+                    process.exit(1);
+    
+                } else {
+                    console.log('It got added');
+                    db.end();
+                }
+            })
         })
     })
-})
 
+}
+
+module.exports = recordNewUser;

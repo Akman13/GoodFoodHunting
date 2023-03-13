@@ -14,7 +14,6 @@ const ensureLoggedIn = require('../middlewares/ensure-logged-in');
 
 
 router.get('/', (req, res) => {
-    console.log(req.user);
     const sql = 'SELECT * FROM dishes;';
 
     db.query(sql, (dbErr, dbRes) => {
@@ -28,7 +27,7 @@ router.get('/', (req, res) => {
 
 
 router.get('/dishes/new', ensureLoggedIn, (req, res) => {
-    res.render('new-dish', {email: req.session.email})
+    res.render('new-dish', {email: req.session.email});
 })
 
 
@@ -50,6 +49,7 @@ router.get('/dishes/:id', (req, res) => {
     
 })
 
+// VIM
 
 router.post('/dishes', ensureLoggedIn, (req, res) => {
     

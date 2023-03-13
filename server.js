@@ -27,15 +27,16 @@ app.use(session({
 
 
 
-const logger = require('./middlewares/logger');
+// const logger = require('./middlewares/logger');
 const methodOverride = require('./middlewares/method-override');
 
 const sessionController = require('./controllers/session_controller');
+const userController = require('./controllers/user_controllers')
 const dishController = require('./controllers/dish_controllers');
 const currentUser = require('./middlewares/current-user');
 const viewHelpers = require('./middlewares/view-helpers');
 
-app.use(logger);
+// app.use(logger);
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride);
 
@@ -44,6 +45,7 @@ app.use(currentUser);
 
 app.use(viewHelpers);
 app.use("/", sessionController);
+app.use("/", userController);
 app.use("/", dishController);
 
 

@@ -25,9 +25,15 @@
     <a href="/">Home</a>
     <% if (isLoggedIn()) { %>
         <a href="/dishes/new">Share a dish</a>
+    
+    <% } else { %>
+        <a href="/users/signup">Register</a>
+
     <% } %>
     <a href="/login">Login</a>
 
+    <br>
+    <br>
 
     <%- body  %>
     

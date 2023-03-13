@@ -6,7 +6,11 @@ function viewHelpers(req, res, next) {
             return false;
         }
     }
-    next();
+
+    res.locals.isUniqueEmail = true;
+    console.log('Just made res.locals.isUniqueEmail = true');
+
+    next ();
 }
 
 module.exports = viewHelpers;
