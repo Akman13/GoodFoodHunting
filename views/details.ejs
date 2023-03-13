@@ -1,0 +1,10 @@
+<p><%= dish.title %></p>
+<img src="<%= dish.image_url %>" alt="">
+
+<form action="/dishes/<%= dish.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button>Delete</button>
+</form>
+
+
+<a href="/dishes/<%= dish.id %>/edit">Edit</a>

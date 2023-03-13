@@ -1,0 +1,54 @@
+body, html {
+    background-color: mintcream;
+}
+
+p {
+    margin: 0;
+}
+
+
+section {
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+.dishes {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+}
+
+
+.ui-card {
+    /* background-color: floralwhite; */
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+
+.ui-card p {
+    height: 70%;
+}
+
+
+.ui-card img {
+    height: 100%;
+    object-fit: cover;
+    /* aspect-ratio: 1; */
+    /* width: 100%; */
+
+}
+
+
+.ui-card h2 {
+    background-color: beige;
+    margin: 0;
+    height: 30%;
+}
+
+.ui-card img {
+    width: 100%
+}
+
