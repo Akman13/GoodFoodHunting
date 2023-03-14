@@ -8,7 +8,6 @@ function viewHelpers(req, res, next) {
     }
 
     res.locals.isUniqueEmail = true;
-    console.log('Just made res.locals.isUniqueEmail = true');
 
     next ();
 }

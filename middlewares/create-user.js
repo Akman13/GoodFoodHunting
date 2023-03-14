@@ -1,19 +1,12 @@
-const { Client } = require('pg'); // Need to save to the database
-
+const db = require("../db");
 const bcrypt = require('bcrypt');
 
-const db = new Client( {
-    database: 'goodfoodhunting',
-    user: 'postgres',
-    password: process.env.POSTGRES_PW,
-});
-db.connect();
 
-// const email = 'dt@ga.co';
-// const plainTextPassword = "pudding";
-
-function recordNewUser(email, plainPassword) {
-
+// Creates a user and stores their email and digested password into the database.
+function recordNewUser(req, res, next) {
+    
+    const { email, plainPassword } = req.body;
+    
     bcrypt.genSalt(10, (err, salt) => {
     
         bcrypt.hash(plainPassword, salt, (hashErr, digestedPassword) => {
@@ -27,12 +20,13 @@ function recordNewUser(email, plainPassword) {
     
                 } else {
                     console.log('It got added');
-                    db.end();
+                    next();
                 }
             })
         })
     })
-
 }
+
+
 
 module.exports = recordNewUser;

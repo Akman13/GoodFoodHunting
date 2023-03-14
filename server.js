@@ -33,14 +33,14 @@ const methodOverride = require('./middlewares/method-override');
 const sessionController = require('./controllers/session_controller');
 const userController = require('./controllers/user_controllers')
 const dishController = require('./controllers/dish_controllers');
-const currentUser = require('./middlewares/current-user');
+const setCurrentUser = require('./middlewares/set-current-user');
 const viewHelpers = require('./middlewares/view-helpers');
 
 // app.use(logger);
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride);
 
-app.use(currentUser);
+app.use(setCurrentUser);
 
 
 app.use(viewHelpers);

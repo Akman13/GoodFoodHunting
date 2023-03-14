@@ -1,5 +1,5 @@
 const db = require("./../db/");
-const recordNewUser = require('./../db/seed_dummy_user')
+const recordNewUser = require('./create-user')
 
 // On the server side: Check if the email is already in the database. If it is, render the sign-up page again with a warning text
 // On the server side: If it's valid, call the encryptor to digest their pw, then store the data
@@ -25,11 +25,9 @@ function ensureUniqueEmail(req, res, next) {
 
         } else if (dbRes.rowCount === 0) {
             console.log(`Line 25 of ensure-unique-email. dbRes.rowCount: ${dbRes.rowCount}`);
-            return next();
+            next();
         }
-
     })
-    console.log('Line32 of ensure-unique-email - should not appear');
 }
 
 module.exports = ensureUniqueEmail;
